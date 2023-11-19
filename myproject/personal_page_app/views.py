@@ -31,9 +31,13 @@ def index(request):
     }
     API_KEY = '547f59cb0b0f0159fa10a20b4e68c8a5'
     current_weather_url = 'https://api.openweathermap.org/data/2.5/weather?q={}&appid={}'
+
+    # logic for handling request
     if request.method == 'POST':
         if request.POST.get('city1'):
             city1 = request.POST['city1']
+            city1 = city1.title()
+            # try and except to handle KeyError Exception
             try: 
                 weather_data1 = fetch_weather(city1, API_KEY, current_weather_url)
                 context = {
@@ -47,7 +51,8 @@ def index(request):
                 'error_bool': True
                 }
                 return render(request, 'personal_page_app/index.html', context)
-        # to do list
+            
+        # to do list - add new todo
         if request.POST.get('todo'):
             task = todo.objects.create()
             content1 = request.POST['todo']
