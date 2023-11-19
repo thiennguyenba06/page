@@ -32,28 +32,16 @@
         <div class="todo-container">
           <p>to do list</p>
           <div class="add-task-container">
+            {% for todo in todos %}
+              <tr>{{todo}}</tr>
+            {% endfor %}
             <!-- Max -> 10 line with </p> tag -->
             <form method="POST">
               {% csrf_token %}
               <input type="text" name="todo" placeholder="Aa...">
               <button id="new-task">+</button>
             </form>
-            <table>
-              <td>
-                {% for content in task_content %}
-                <td>
-                  <p> {{content}} </p>
-                </tr>
-                {% endfor %}
-              </td>
-              <td>
-                {% for status in task_status %}
-                <tr>
-                  <p> {{status}} </p>
-                </tr>
-                {% endfor %}
-              </td>
-            </table>
+  
           </div>
         </div>
       </div>

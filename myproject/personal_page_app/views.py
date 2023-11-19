@@ -29,8 +29,14 @@ def index(request):
     context = {
         'date_time': date_time,
     }
+    try:
+        task_final = retrieve_todo()
+        context['todos'] = task_final
+    except UnboundLocalError:
+        pass
     API_KEY = '547f59cb0b0f0159fa10a20b4e68c8a5'
     current_weather_url = 'https://api.openweathermap.org/data/2.5/weather?q={}&appid={}'
+    
 
     # logic for handling request
     if request.method == 'POST':
@@ -44,13 +50,13 @@ def index(request):
                     'date_time': date_time, 
                     'weather_data1': weather_data1
                 }
-                return render(request, 'personal_page_app/index.html', context)
+                # return render(request, 'personal_page_app/index.html', context)
             except KeyError:
                 context = {
                 'date_time': date_time,
                 'error_bool': True
                 }
-                return render(request, 'personal_page_app/index.html', context)
+                # return render(request, 'personal_page_app/index.html', context)
             
         # to do list - add new todo
         if request.POST.get('todo'):
@@ -58,18 +64,25 @@ def index(request):
             content1 = request.POST['todo']
             task.content = content1
             task.save()
-        task_content, task_status = retrieve_todo(task)
-        context['task_content'] = task_content
-        context['task_status'] = task_status
+        try:
+            task_final = retrieve_todo()
+            context['todos'] = task_final
+        except UnboundLocalError:
+            pass
+
+        # render page
         return render(request, 'personal_page_app/index.html', context)
     else:
         return render(request, 'personal_page_app/index.html', context)
         
-def retrieve_todo(task):
+def retrieve_todo():
     task_content = list(todo.objects.values_list('content'))
     task_status = list(todo.objects.values_list('status'))
-    # return value in dict
-    return task_content, task_status
+    task_final = []
+    for content, status in zip(task_status, task_content):
+        temp = [content, status]
+        task_final.append(temp)
+    return task_final
 
 def fetch_weather(city, api_key, current_weather_url):
     response = requests.get(current_weather_url.format(city, api_key)).json()
@@ -94,10 +107,3 @@ def fetch_weather(city, api_key, current_weather_url):
 def social_login_spotify(request):
     """Redirects the user to the Spotify login page."""
     return redirect('social:begin', 'spotify')
-
-
-
-
-  
-
-    
