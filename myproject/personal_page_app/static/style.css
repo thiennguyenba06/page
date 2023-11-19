@@ -1,0 +1,71 @@
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: Arial, serif;
+  background-color: #ffffff;
+  padding: 50px;
+
+}
+
+
+
+
+.weather-container {
+  width: 25%;
+  text-align: center;
+  display: inline-block;
+}
+.search-container {
+  width: 100%;
+}
+
+form {
+  margin: 20px 0;
+  size-adjust: 100%;
+}
+
+input[type="text"] {
+  padding: 2%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 65%;
+
+}
+
+button {
+  background-color: #6568d9;
+  color: white;
+  padding: 2%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  size-adjust: 30%;
+  width: fit-content;
+}
+
+
+
+
+.other-shit {
+  display: block;
+  width: 65%;
+  float: right;
+  padding: 2%;
+}
+
+.other-shit1 {
+  float: left;
+  display: block;
+  width: 40%;
+  text-align: center;
+}
+
+.other-shit2 {
+  display: block;
+  width: 40%;
+  float: right;
+  text-align: center
+}
+

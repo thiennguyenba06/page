@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+html {
+  font-size: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 20;
+  box-sizing: border-box;
+}
+
+header {
+  padding-bottom: 3%;
+}
+
+
+.display-date {
+  text-align: left;
+  margin-bottom: 10px;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.display-date>span {
+  font-size: 40%;
+}
+
+.display-time {
+  display: flex;
+  font-size: 3em;
+  font-weight: bold;
+  border: 8px solid #ffd868;
+  padding: 10px 20px;
+  border-radius: 20px;
+  transition: ease-in-out 0.1s;
+  transition-property: background, box-shadow, color;
+  width: fit-content;
+}
+
+
+.display-time:hover {
+  background: #ffd868;
+  box-shadow: 0 0 30px#ffd868;
+  color: #272727;
+  cursor: pointer;
+}
+
+.heading-container {
+  display: block;
+}
+
+.head-left-container {
+  width: 40%;
+  display: inline-block;
+  background-color: lavender;
+  border-radius: 1rem;
+}
+
+
+.head-right-container {
+  display: block;
+  width: 50%;
+  max-height: 197px;
+  display: inline-flex;
+  float: right;
+
+}
+
+.image-container {
+  width: 50%;
+  padding-right: 0.4rem;
+}
+
+.todo-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  width: 330px;
+}
+
+.add-task-container {
+  display: flex;
+  flex-direction: column-reverse;
+
+}

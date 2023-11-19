@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- loading files and fonts for timer button -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/6f3103b13c.js" crossorigin="anonymous"></script>
+  <title>Personal Page</title>
+</head>
+
+
+
+<body>
+  <!-- This is for the header of the page -->
+  <header>
+    <link rel="stylesheet" href="{% static 'style_time.css' %}">
+    <div class="heading-container">
+      <div class="head-left-container">
+        <h1> Hi Thien </h1>
+        <div class="display-date">
+          <h1>{% include 'personal_page_app/datetime.html' with date_time=date_time %}</h1>
+        </div>
+        <div class="display-time"></div>
+      </div>
+      <div class="head-right-container">
+        <div class="image-container">
+          <h1>PUT SOME IMAGE</h1>
+        </div>
+        <div class="todo-container">
+          <p>to do list</p>
+          <div class="add-task-container">
+            <!-- Max -> 10 line with </p> tag -->
+            <form method="POST">
+              {% csrf_token %}
+              <input type="text" name="todo" placeholder="Aa...">
+              <button id="new-task">+</button>
+            </form>
+            <table>
+              <td>
+                {% for content in task_content %}
+                <td>
+                  <p> {{content}} </p>
+                </tr>
+                {% endfor %}
+              </td>
+              <td>
+                {% for status in task_status %}
+                <tr>
+                  <p> {{status}} </p>
+                </tr>
+                {% endfor %}
+              </td>
+            </table>
+          </div>
+        </div>
+      </div>
+  </header>
+
+  <!-- This is the middle section -->
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <div class="weather-container">
+    <form method="POST">
+      {% csrf_token %}
+      <div class="search-container">
+        <input type="text" name="city1" placeholder="Enter city">
+        <button type="submit">Search</button>
+      </div>
+    </form>
+    {% if error_bool %}
+    <div class="city-container">
+      <h3>{% include 'personal_page_app/error.html' %}</h3>
+    </div>
+    {% endif %}
+    {% if weather_data1 %}
+    <div class="city-container">
+      {% include 'personal_page_app/city_weather.html' with weather_data=weather_data1 %}
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="other-shit">
+    <div class="other-shit1">
+      <h1>Feature</h1>
+      <p>Spotify login</p>
+      <a href="{% url "social:begin" "spotify" %}">Click here to sign in to Spotify</a>
+    </div>
+
+    <div class="other-shit2">
+      <section>
+        <link rel="stylesheet" href="{% static 'timer_style.css' %}">
+        <div class="pomodoro-container">
+          <h1>Timer</h1>
+          <div class="panel">
+            <p id="work">work</p>
+            <p id="break">break</p>
+          </div>
+
+          <div class="timer">
+            <div class="time">
+              <p id="minutes"></p>
+              <p>:</p>
+              <p id="seconds"></p>
+            </div>
+            <div class="controls">
+              <button id="start" onclick="start()"><i class="fa-solid fa-play"></i></button>
+              <a id="reset" href="./"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+            </div>
+          </div>
+
+
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- This place is for loading js files -->
+  <script src="/static/timer.js"></script>
+  <script src="/static/current_time.js"></script>
+</body>
+
+
+
+
+</html>

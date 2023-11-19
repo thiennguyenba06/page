@@ -1,0 +1,7 @@
+<!--{% load static %}-->
+{% if date_time %}
+    <!--<link rel="stylesheet" href="{% static 'style_time.css' %}">-->
+    <span id="month">{{date_time.month}}</span>
+    <span id="day">{{date_time.date}}</span>,
+    <span id="year">{{date_time.year}}</span>
+{% endif %}
