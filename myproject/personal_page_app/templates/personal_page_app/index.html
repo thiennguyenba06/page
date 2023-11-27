@@ -34,7 +34,15 @@
           <div class="add-task-container">
             {% for todo in todos %}
             <span>
-              <p>{{todo.1}} {{todo.0}}</p>
+              <p> 
+                {% if todo.1 == False %}
+                  <input type="checkbox" id="todo.1" name="" unchecked>
+                {% endif %}
+                {% if todo.1 == True %}
+                  <input type="checkbox" id="todo.1" name="" checked>
+                {% endif %}
+                {{todo.0}}
+              </p>
             </span>
             {% endfor %}
 

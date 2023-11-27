@@ -83,5 +83,10 @@ header {
 .add-task-container {
   display: flex;
   flex-direction: column;
+}
 
+.add-task-container>span {
+  text-align: left;
+  align-items: left;
+  align-self: left;
 }
