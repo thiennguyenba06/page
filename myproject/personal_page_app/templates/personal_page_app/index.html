@@ -33,15 +33,17 @@
           <p>to do list</p>
           <div class="add-task-container">
             {% for todo in todos %}
-              <tr>{{todo}}</tr>
+            <span>
+              <p>{{todo.1}} {{todo.0}}</p>
+            </span>
             {% endfor %}
-            <!-- Max -> 10 line with </p> tag -->
+
             <form method="POST">
               {% csrf_token %}
               <input type="text" name="todo" placeholder="Aa...">
               <button id="new-task">+</button>
             </form>
-  
+
           </div>
         </div>
       </div>

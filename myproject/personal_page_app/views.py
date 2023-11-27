@@ -24,7 +24,11 @@ def get_datetime():
     return date_time
 
 def index(request): 
-    # Declaring constant
+    # declaring constant
+    API_KEY = '547f59cb0b0f0159fa10a20b4e68c8a5'
+    current_weather_url = 'https://api.openweathermap.org/data/2.5/weather?q={}&appid={}'
+
+    # Initialize 'context' dict
     date_time = get_datetime()
     context = {
         'date_time': date_time,
@@ -34,9 +38,6 @@ def index(request):
         context['todos'] = task_final
     except UnboundLocalError:
         pass
-    API_KEY = '547f59cb0b0f0159fa10a20b4e68c8a5'
-    current_weather_url = 'https://api.openweathermap.org/data/2.5/weather?q={}&appid={}'
-    
 
     # logic for handling request
     if request.method == 'POST':
@@ -76,26 +77,16 @@ def index(request):
         return render(request, 'personal_page_app/index.html', context)
         
 def retrieve_todo():
-    task_content = list(todo.objects.values_list('content'))
-    task_status = list(todo.objects.values_list('status'))
+    task_content = list(todo.objects.values_list('content', flat=True))
+    task_status = list(todo.objects.values_list('status', flat=True))
     task_final = []
-    for content, status in zip(task_status, task_content):
+    for content, status in zip(task_content, task_status):
         temp = [content, status]
         task_final.append(temp)
     return task_final
 
 def fetch_weather(city, api_key, current_weather_url):
     response = requests.get(current_weather_url.format(city, api_key)).json()
-    # try:
-    #     json_data = json.loads(response)
-    # except json.JSONDecodeError:
-    #     render('weather_app/error_page.html')
-    # try:
-    #     json_data = json.loads(forecast_response)
-    # except json.JSONDecodeError:
-    #     render('weather_app/error_page.html')
-    
-
     weather_data = {
         'city': city,
         'temp': int(round(response['main']['temp'] - 273.15, 0)), # temp is in Kelvin "-273.15" to switch to Celsius
