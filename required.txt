@@ -3,3 +3,4 @@ pytest
 requests
 spotipy
 social-auth-app-django
+channels

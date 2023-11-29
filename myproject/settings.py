@@ -36,15 +36,20 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'social_django',
-    'personal_page_app'
+    'personal_page_app', 
 ]
+
+ASGI_APPLICATION = 'myproject.asgi.application'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -106,6 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Sesame is a WebSocket that alows real-time interaction between client and server
 AUTHENTICATION_BACKENDS = ('social_core.backends.spotify.SpotifyOAuth2', 
                            'django.contrib.auth.backends.ModelBackend',)
 
@@ -140,12 +146,7 @@ SOCIAL_AUTH_SPOTIFY_CLIENT_SECRET = 'ca6cdc527c8341e292a68dd960427a32'
 SOCIAL_AUTH_SPOTIFY_SCOPE = ['user-read-email', 'user-library-read']
 SOCIAL_AUTH_SPOTIFY_REDIRECT_URI = 'http://127.0.0.1:8000/callback'
 
-
-
-
-
 # Configuration for js file
 STATICFILES_MIMETYPES = {
     '.js': 'text/javascript',
 }
-
