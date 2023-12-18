@@ -53,8 +53,10 @@ header {
 .head-left-container {
   width: 40%;
   display: inline-block;
-  background-color: lavender;
+  padding: 1%;
   border-radius: 1rem;
+  background-color: lavenderblush;
+  box-shadow: 4.3px 8.6px 8.6px lightblue;
 }
 
 

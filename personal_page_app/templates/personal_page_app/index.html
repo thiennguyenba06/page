@@ -34,12 +34,12 @@
           <div class="add-task-container">
             {% for todo in todos %}
             <span>
-              <p> 
+              <p>
                 {% if todo.1 == False %}
-                  <input type="checkbox" id="todo.1" name="" unchecked>
+                <input type="checkbox" id="todo.1" name="" unchecked>
                 {% endif %}
                 {% if todo.1 == True %}
-                  <input type="checkbox" id="todo.1" name="" checked>
+                <input type="checkbox" id="todo.1" name="" checked>
                 {% endif %}
                 {{todo.0}}
               </p>
@@ -59,31 +59,44 @@
 
   <!-- This is the middle section -->
   <link rel="stylesheet" href="{% static 'style.css' %}">
-  <div class="weather-container">
-    <form method="POST">
-      {% csrf_token %}
-      <div class="search-container">
-        <input type="text" name="city1" placeholder="Enter city">
-        <button type="submit">Search</button>
+  <div class="left-column">
+    <div class="weather-container">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="search-container">
+          <input type="text" name="city1" placeholder="Enter city">
+          <button type="submit">Search</button>
+        </div>
+      </form>
+      {% if error_bool %}
+      <div class="city-container">
+        <h3>{% include 'personal_page_app/error.html' %}</h3>
       </div>
-    </form>
-    {% if error_bool %}
-    <div class="city-container">
-      <h3>{% include 'personal_page_app/error.html' %}</h3>
+      {% endif %}
+      {% if weather_data1 %}
+      <div class="city-container">
+        {% include 'personal_page_app/city_weather.html' with weather_data=weather_data1 %}
+      </div>
+      {% endif %}
     </div>
-    {% endif %}
-    {% if weather_data1 %}
-    <div class="city-container">
-      {% include 'personal_page_app/city_weather.html' with weather_data=weather_data1 %}
-    </div>
-    {% endif %}
+    <link rel="stylesheet" href="{% static 'calc.css' %}">
+      <div class="calc">
+        <h4>Calc</h4>
+        <div class="display-calc">
+          <span id="user-input">
+            <input type="text" name="calc-input" id="calc-input" autofocus="autofocus">
+          </span>
+          <div class="user-result"></div>
+        </div>
+      </div>
   </div>
+
 
   <div class="other-shit">
     <div class="other-shit1">
-      <h1>Feature</h1>
-      <p>Spotify login</p>
-      <a href="{% url "social:begin" "spotify" %}">Click here to sign in to Spotify</a>
+      <div class="spotif-web-player">
+      
+      </div>
     </div>
 
     <div class="other-shit2">
@@ -117,6 +130,7 @@
   <!-- This place is for loading js files -->
   <script src="/static/timer.js"></script>
   <script src="/static/current_time.js"></script>
+  <script src="/static/calc.js"></script>
 </body>
 
 

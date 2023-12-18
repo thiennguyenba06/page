@@ -95,6 +95,6 @@ def fetch_weather(city, api_key, current_weather_url):
     }
     return weather_data
 
-def social_login_spotify(request):
-    """Redirects the user to the Spotify login page."""
-    return redirect('social:begin', 'spotify')
+# def social_login_spotify(request):
+#     """Redirects the user to the Spotify login page."""
+#     return redirect('social:begin', 'spotify')

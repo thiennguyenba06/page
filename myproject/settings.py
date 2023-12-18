@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'social_django',
     'personal_page_app', 
 ]
 
@@ -112,8 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Sesame is a WebSocket that alows real-time interaction between client and server
-AUTHENTICATION_BACKENDS = ('social_core.backends.spotify.SpotifyOAuth2', 
-                           'django.contrib.auth.backends.ModelBackend',)
+AUTHENTICATION_BACKENDS = ( 'django.contrib.auth.backends.ModelBackend',)
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -140,11 +138,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'personal_page_app', 'static')]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configure the Spotipy library with client ID and client secret
-SOCIAL_AUTH_URL_NAMESPACE = 'social'
-SOCIAL_AUTH_SPOTIFY_CLIENT_ID = 'c3f1360b71c74f11acbed003bf0fc4df'
-SOCIAL_AUTH_SPOTIFY_CLIENT_SECRET = 'ca6cdc527c8341e292a68dd960427a32'
-SOCIAL_AUTH_SPOTIFY_SCOPE = ['user-read-email', 'user-library-read']
-SOCIAL_AUTH_SPOTIFY_REDIRECT_URI = 'http://127.0.0.1:8000/callback'
+
 
 # Configuration for js file
 STATICFILES_MIMETYPES = {

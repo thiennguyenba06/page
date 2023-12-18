@@ -2,5 +2,5 @@ django
 pytest
 requests
 spotipy
-social-auth-app-django
-channels
+channels==3.0.4
+djangorestframework

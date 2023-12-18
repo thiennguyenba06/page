@@ -29,7 +29,6 @@ urlpatterns = (
         # your URLs here
         path('admin/', admin.site.urls),
         path('', include('personal_page_app.urls')),
-        path('', include('social_django.urls', namespace='social')),
         # re_path(r"^media/(?P<path>.*)$", serve, {"document_root": settings.MEDIA_ROOT}),
         re_path(
             r"^static/(?P<path>.*)$", serve, {"document_root": settings.STATIC_ROOT}
